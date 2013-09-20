@@ -1,0 +1,37 @@
+<p>
+  <strong>Client:</strong>
+  <%= @invoice.client.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @invoice.description %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= number_to_currency(@invoice.amount) %>
+</p>
+
+<p>
+  <strong>Date due:</strong>
+  <%= @invoice.date_due.to_time.strftime("%b %e, %Y at %I:%M %P") %>
+</p>
+
+
+<p>[If client, show link to submit payment]</p>
+<% if @invoice.date_paid.empty? %>
+  <%= render partial: "charges/form", locals: {invoice: @invoice} %>
+<% else %>
+  <p>
+    <strong>Date paid:</strong>
+    <%= @invoice.date_paid.to_time.strftime("%b %e, %Y at %I:%M %P") %>
+  </p>
+<% end %>
+
+<p>[if admin user, show link to send invoice to client]</p>
+<p>"Click Here" to email this invoice to <%= @invoice.client.name %></p>
+<p><%= link_to "Send invoice", send_to_client_invoice_path(:invoice_id => @invoice.id) %></p>
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>

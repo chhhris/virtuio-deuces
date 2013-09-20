@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Virtuio</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag "/favicon.ico" %>
+</head>
+<body class ="container-home">
+<div id="user_header">
+  <% if current_user && current_user.invoices %>
+    <%= link_to 'Invoices', invoices_path %> | <%= link_to 'Clients', user_path(current_user) %> | 
+  <% end %>
+  <% if current_user %>
+    Logged in as <%= link_to current_user.name, user_path(current_user) %> | 
+    <%= link_to "Log out", logout_path %>
+  <% else %>
+  	<%= link_to "Sign up", signup_path %> or
+  	<%= link_to "Login", login_path %>
+  <% end %>
+</div>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+</body>
+</html>

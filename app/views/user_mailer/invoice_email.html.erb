@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  
+  <body>
+    <p><%= @client.name %>!</p>
+
+    <p><%= @user.name %> sent you an invoice.</p>
+
+    <ul>
+      <li><strong>Amount: </strong><%= number_to_currency(@invoice.amount) %></li>
+      <li><strong>Date due: </strong><%= @invoice.date_due.to_time.strftime("%b %e, %Y at %I:%M %P") %></li>
+    </ul>
+
+    <p>You can pay the invoice by credit card via this link:</p>
+
+    <p><%= link_to "Submit Payment", "http://localhost:3000#{invoice_path(@invoice)}" %></p>
+
+    <p>If you have any questions, please contact <%= @user.name %> directly by replying to this email.</p>
+
+  </body>
+</html>

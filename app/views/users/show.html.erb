@@ -1,0 +1,18 @@
+<h1>Client List</h1>
+<p>Here's where you keep track of all your clients.</p> 
+<p>Just add a <strong>name</strong> and <strong>email address</strong>. You'll <%= link_to 'create invoices', invoices_path %> for each client separately.</p>
+<table>
+	<tr>
+		<th>Client</th>
+		<th>Email</th>
+	</tr>
+	<% @clients.each do |client| %>
+	<tr>
+		<td><%= link_to client.name, client_path(client) %></td> 
+		<td><%= client.email %></td>
+	</tr>
+	<% end %>
+</table>
+<br/>
+<%= link_to 'Add Client', new_client_path %>
+<%= link_to 'Edit Profile', edit_user_path(@user) %>

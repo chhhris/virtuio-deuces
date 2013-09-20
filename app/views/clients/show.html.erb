@@ -1,0 +1,30 @@
+<h1><%= @client.name %></h1>
+
+<p>
+  <strong>Email:</strong>
+  <%= @client.email %>
+</p>
+
+<h2>Invoices</h2>
+<table>
+	<tr>
+		<th>Amount</th>
+		<th>Due Date</th>
+		<th>Date Paid</th>
+		<th>Description</th>
+		<th></th>
+	</tr>
+	<% @invoices.each do |invoice| %>
+	<tr>
+		<td><%= invoice.amount %></td> 
+		<td><%= invoice.date_due %></td> 
+		<td><%= invoice.date_paid %></td> 
+		<td><%= invoice.description %></td> 
+		<td><%= link_to 'Open Invoice', invoice_path(invoice) %></td>
+	</tr>
+	<% end %>
+</table>
+<br>
+<%= link_to 'Add Invoice', new_invoice_path %> | 
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>

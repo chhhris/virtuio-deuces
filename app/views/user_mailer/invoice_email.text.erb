@@ -1,0 +1,19 @@
+<%= @client.name %>!
+
+<%= @user.name %> sent you an invoice.
+
+======================================
+
+Amount: <%= number_to_currency(@invoice.amount) %>
+Date due: <%= @invoice.date_due.to_time.strftime("%b %e, %Y at %I:%M %P") %>
+
+======================================
+
+You can pay the invoice by credit card via this link:
+
+<%= link_to "Submit Payment", "http://localhost:3000#{invoice_path(@invoice)}" %>
+
+If you have any questions, please contact <%= @user.name %> directly by replying to this email.
+
+Cheers,
+Team Virtu.io

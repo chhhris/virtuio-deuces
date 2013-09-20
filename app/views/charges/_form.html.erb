@@ -1,0 +1,12 @@
+<%= form_tag( params.merge( :controller => "charges", :action => "create", :amount => @amount, :invoice => @invoice, :description => @invoice.description )) do %>
+  <article>
+    <label class="amount">
+      <span><strong>Submit payment:</strong> <%= number_to_currency(@amount) %></span>
+    </label>
+  </article>
+  <%= hidden_field_tag :amount => @amount %>
+  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="<%= @invoice.description %>"
+          data-amount="<%= @amount * 100 %>"></script>
+<% end %>
